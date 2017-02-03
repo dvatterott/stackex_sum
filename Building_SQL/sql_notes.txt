@@ -1,0 +1,2 @@
+http://initd.org/psycopg/docs/usage.html
+https://wiki.postgresql.org/wiki/Psycopg2_Tutorial

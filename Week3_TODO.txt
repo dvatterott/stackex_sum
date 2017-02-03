@@ -1,0 +1,86 @@
+WEEK 3 TODO:
+x 1. Look at what my model is learning! (what are the most predictive words?)
+x 2. SQL database with updated data
+x 3. Neural net / Skip thoughts??
+  4. Topic Models
+x 5. chrome extension!!
+x 6. RNN generator
+x 7. web_app front page with explanation
+x 8. how to distribute the chrome extension
+x 9. test chrome extension with model.
+
+Meeting with Yan -
+x 1. Get my app on aws as soon as possible. There might be security issues. Talk to her if I run into this. (https vs http thing)
+x 2. Register app on chrome store. Then people can install from the chrome store. She said this was very useful during interviews.
+
+Use hashing vectorizer instead of count vectorizer (if sticking with count)
+
+Threshold. And color items according to how helpful (shades of yellow)
+Maybe look at only the code and learn good code vs bad code
+
+Thursday:
+x Work on extension. How to keep formatting? Is there a way I can detect code tags/other html??
+x Bring the neural net over to the model.
+  Highlighting based on the predicted helpfulness - more helpful are highlighted in a more saturated yellow
+
+Presentation Notes
+  1. How to wrap up the arc of your story/pitch
+  2. what can people now do?
+  3. mention deliverable up front
+  4. name on about me
+  5. maybe put model results on the same plot.slide.
+  6. emphasize that I treated this as a classifcation problem and why this was important.
+  7. emphasize that my products works at the sentence level
+  8. Get more examples for the demonstrates
+  9. backup slides in case app fails
+  10. tighten it up!
+
+LINKS TO USE:
+  http://stackoverflow.com/questions/13784192/creating-an-empty-pandas-dataframe-then-filling-it
+  Find some other sites to use for this.
+
+Friday:
+x 1. Clean website
+  2. Get everything on github
+  3. Get precision and recall of model
+  4. BUG CHECK!!! (look at the site you know doesn't work - http://stackoverflow.com/questions/6771428/most-efficient-way-to-reverse-a-numpy-array)
+      Also, I know the site tries to function from the /questions/ page (not a specific question)
+  5. Use lime to look at what my model likes...
+  6. Change confusion matrix labels (helpful/unhelpful rather than good/bad)
+  7. Titles for figures on website...
+
+This weekend:
+  1. Improve model
+  2. javascript addon??
+
+
+Are there already highlighter chrome extensions??
+
+To run the server as a background app run (from ~/application & insight environment):
+  gunicorn Web_App:app -D
+To turn it off run:
+  pkill gunicorn
+
+this is from my p2
+$ scp ubuntu@ec2-34-195-103-84.compute-1.amazonaws.com:/home/ubuntu/nbs/stackex_gru.h5 /home/dan-laptop/Insight/stackex_gru.h5
+this is from my t2
+$ scp ubuntu@ec2-34-198-227-154.compute-1.amazonaws.com:/home/ubuntu/application/Web_App/views.py /home/dan-laptop/Insight/stackex_sum/Web_App/views.py
+
+
+Work on web_app, input, and explanation page. How to spread the chrome extension?? - the chrome store!!!
+https://www.quora.com/Can-I-make-a-Google-Chrome-extension-using-Python - about how to use chrome extension to send website to python hosted flask page.
+https://robots.thoughtbot.com/how-to-make-a-chrome-extension
+http://charlesleifer.com/blog/a-flask-front-end-and-chrome-extension-for-youtube-dl/ ##this seems like the most helpful thing so far!!!
+http://blog.dwyer.co.za/2016/09/reclaiming-web-in-100-lines-of-code.html
+
+https://github.com/aadeyemi/insightdatascience_project
+https://github.com/yankou/AirbnbLocal
+
+http://stackoverflow.com/questions/1891738/how-to-modify-current-url-location-in-chrome-via-extensions - update the value of the current tab
+
+https://chrome.google.com/webstore/detail/sifting-the-overflow/japbeffaagcpbjilckaoigpocdgncind?hl=en-US&gl=US
+
+Abayemi Rec -
+  Do the highlighting in javascript so that I don't have to change people's webpage.
+  Send the important words vector to javascript. Have javascript to do regex, then insert the class end tag at the end of the found position,
+  and insert the class start tag at the beginning (class tag is for highlighting)

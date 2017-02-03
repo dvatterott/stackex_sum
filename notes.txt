@@ -1,0 +1,132 @@
+
+Client Id
+8819
+
+Client Secret
+bnX)DQ0D99SfGuPT3bT vBg((
+
+
+Key
+5*wCDZgONnIJ*aiaYeKjQQ((
+
+https://github.com/lucjon/Py-StackExchange
+https://github.com/lucjon/Py-StackExchange/wiki/Updating-to-v2.x
+https://github.com/lucjon/Py-StackExchange/wiki/FAQ
+
+http://data.stackexchange.com/stackoverflow/query/75877/related-tags - sql query of statsexchange data
+http://data.stackexchange.com/stackoverflow/query/new
+
+useful for visualizing how model works - http://marcotcr.github.io/lime/tutorials/Lime%20-%20basic%20usage%2C%20two%20class%20case.html
+
+SELECT * FROM Posts
+WHERE Tags LIKE '%python%'
+
+SELECT * FROM Posts
+WHERE CHARINDEX('python', Tags) > 0
+AND CreationDate BETWEEN '12/31/2014' AND '1/1/2016'
+ORDER BY Id DESC
+
+Python_2015_1.csv - final question is 32395904
+
+SELECT * FROM Posts
+WHERE CHARINDEX('python', Tags) > 0
+AND CreationDate BETWEEN '12/31/2014' AND '1/1/2016'
+AND Id < 32395904
+ORDER BY Id DESC
+
+Python_2015_2.csv - final question is 30075818
+
+SELECT * FROM Posts
+WHERE CHARINDEX('python', Tags) > 0
+AND CreationDate BETWEEN '12/31/2014' AND '1/1/2016'
+AND Id < 30075818
+ORDER BY Id DESC
+
+Python_2015_3.csv is the final csv file. So there are just under 150k python questions from 2015
+
+EXTENSION~~
+in chrome
+chrome://extensions/
+Load unpacked extension ... extension should appear as icon.
+https://brython.info/static_doc/en/intro.html
+https://brython.info/static_doc/en/access.html
+https://pythonspot.com/create-a-chrome-plugin-with-python/
+https://github.com/brython-dev/brython - has some install instructions although i just used pip...
+
+Thoughts...
+I could get the general topic of all the python plots.
+This should be enough to learn ~1000 topics. Then I can rank questions according to these topics. This could be a database that I host on my own.
+I can also find how much each python tag fits with the topics. This is then used to group the questions in the to topics that I think are important.
+
+Now, you can search with a tag and I can show what similar tags are (in this topic space) and what the most representative/highest scored questions+answers answer_scores
+Then wit
+
+What makes a good answer and what makes a good question. This is an important question for companies and for individuals.
+
+FastForward Lab Notes...
+Summarization NLP Steps:
+  1. vectorize (bag-of-words - # of times each word in dict appears in sentence,n-grams,embeddings)
+  2. score (luhn's algorithm, topic modeling, rnns)
+  3. select (might constrain so only one sentence per topic. might penalize longer sentences)
+    3a. how to "stitch selected sentences together"
+
+Luhn's algorithm: (bad at carrying the meaning of the document forward)
+  1. words that appear frequently are important (must remove stop words)
+  2. can adjust weightings (sentences chosen) through heuristics. Best to train as a feature - document position (early/late) as a feature
+
+Multidocument Summarization:
+  1. Can't simply catenate the documents together (how to order??)
+
+Topic Modeling: (Latent Dirichlet Allocation; LDA) - Allan Riddell lda package in python. scikit learning also has an lda
+  1. Does a better job at modeling the meaning of a document.
+  2. Identifies groups of words that co-occur.
+  3. Document summarized as a vector of topic weights
+  4. Train LDA on large text corpus for all the topic that can appear then give individual texts to be scored according to these topics
+
+FFL Amazon example:
+  1. They compare the topic of sentences (reviews) to the topic of all the reviews.
+  2. Need lots of data (10k reviews per topic) but 200 documents per topic has also worked
+  3. Would i compute the topic of each item as its brought in??? Resources should be a a concern for me
+  4. obviously mentions word2vec but also skip-thoughts which is a sentence level word2vec (sent2vec=skip thoughts. https://github.com/ryankiros/skip-thoughts)
+
+Shitty but open source summarization (benchmarking):
+  1. Sumy
+  2. Sumpy
+  3. pyTLDR
+  4. TextTeaser
+
+What is the extracted unit? (sentence?? code??)
+
+From meeting with Guil - important to think about how to demonstrate quality of fit for LDA. Could you do something like mixed PCA where you look at
+  how much topic you would expect from a random documnet? This could be a good approach. It might be creative enough.
+
+  http://stats.stackexchange.com/questions/120031/in-lda-how-to-interpret-the-meaning-of-topics#208058
+  https://radimrehurek.com/gensim/models/hdpmodel.html
+
+topic modeling of stack overflow
+http://www.research.ed.ac.uk/portal/files/10625320/sutton_msr13_2.pdf
+
+  I think it could also be cool to build a regression model that predicts the best answers and then have this algorithm decide the page order of results
+
+  TODO:
+    1. Clean the documents and answers of each python question so that the text can be given to a genism lda
+    2. Train the lda model
+    3. Train model to predict quality of answer (given the text) -  should this score, views or both??
+    4. then the goal is to search a given question. the model will compute the topic of the question and find the best questions/answers relative to their distance from query
+    5. Present the ranked pages
+
+Quick thoughts:
+  I will have one dataframe with everything but the text.
+  Then I will have a dictionary with question ids as keys and tokens as values
+  I should start training the model to predict scores/views asap!
+  I have to think about how to get portions of text to extract for the summarization!! - so i should probably keep full text somewhere...
+
+    ONE PROBLEM!! THIS DOES NOT INCLUDE ANY SUMMARIZATION\
+
+    What i need:
+      dictionary of each question and answers. this dictionary should include scores (question+answer?) and views???
+      the text. URL
+
+
+IMPORTANT NOTE ABOUT DATA: I was not able to get all the python questions through the stackoverflow api (only 28k). Not sure why not. I should probably just email
+  Stackoverflow and ask about them sending the data though.
