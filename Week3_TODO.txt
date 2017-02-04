@@ -38,11 +38,12 @@ Presentation Notes
 LINKS TO USE:
   http://stackoverflow.com/questions/13784192/creating-an-empty-pandas-dataframe-then-filling-it
   Find some other sites to use for this.
+  http://stackoverflow.com/questions/9236926/concatenating-two-one-dimensional-numpy-arrays - this is where the site works less well
 
 Friday:
 x 1. Clean website
 x 2. Get everything on github
-  3. Get precision and recall of model
+x 3. Get precision and recall of model
   4. BUG CHECK!!! (look at the site you know doesn't work - http://stackoverflow.com/questions/6771428/most-efficient-way-to-reverse-a-numpy-array)
       Also, I know the site tries to function from the /questions/ page (not a specific question)
   5. Use lime to look at what my model likes...
@@ -80,6 +81,8 @@ https://github.com/yankou/AirbnbLocal
 http://stackoverflow.com/questions/1891738/how-to-modify-current-url-location-in-chrome-via-extensions - update the value of the current tab
 
 https://chrome.google.com/webstore/detail/sifting-the-overflow/japbeffaagcpbjilckaoigpocdgncind?hl=en-US&gl=US
+
+https://tuts.codingo.me/chrome-extension-in-under-60-seconds - this uses some regex
 
 Abayemi Rec -
   Do the highlighting in javascript so that I don't have to change people's webpage.
