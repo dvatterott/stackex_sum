@@ -33,7 +33,7 @@ Even with my data in the embedding matrix, my model didn't see any dramatic impr
 
 [Recurrent Neural Networks](http://neuralnetworksanddeeplearning.com/chap6.html) are a powerful class of models that can represent the order that items occur. The next model I trained was a simple recurrent neural network, and this model is the one that sifting the overflow currently uses. The model has an embedding layer and a layer of [gated recurrent units](http://www.wildml.com/2015/10/recurrent-neural-network-tutorial-part-4-implementing-a-grulstm-rnn-with-python-and-theano/). The gated recurrent layer then feeds to the output units.
 
-Below, I depict the performance of my recurrent neural net. While, the model isn't perfect, it yields a 15% increase in identifying helpful answers at no cost to its ability to identify unhelpful answers. Success. Not perfect, but no model is. This is the model currently underlying Sifting the Overflow.
+Below, I depict the performance of my recurrent neural net. While, the model isn't perfect, it yields an increase of the precision of the model. Recall is still a problem, but the model has improved its ability to differentiate between helpful and unhelpful answers.
 
 ![rnn performance](/static/web_images/gru_confmat.png)
 
