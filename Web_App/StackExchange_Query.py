@@ -137,10 +137,6 @@ class acquire_SE_info:
                 m = re.search(search_str, new_text, flags=re.IGNORECASE|re.DOTALL)
                 if not m: continue
                 start, end = m.start(), m.end()
-                print('-----------')
-                print(search_str)
-                print('-----------')
-                print(new_text[start:end])
                 tags.clear()
 
                 replacement_text = new_text[start:end]

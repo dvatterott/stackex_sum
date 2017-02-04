@@ -49,9 +49,6 @@ def answers_input():
     f = open('./Web_App/siftingtheoverflowpost_long.md', 'r')
     md = f.read()
 
-    import os
-    print(os.getcwd())
-
     return render_template("input.html",md = Markup(markdown.markdown(md)))
 
 @app.route('/output')
@@ -69,10 +66,10 @@ def receive_input_query_se():
     r = requests.get(url)
     html_text = r.text
 
-    print('-----------------')
-    for items in good_answers:
-        print(items)
-        print('-----------------')
+    # print('-----------------')
+    # for items in good_answers:
+    #     print(items)
+    #     print('-----------------')
 
     soup = BeautifulSoup(html_text,"lxml")
     head = soup.head

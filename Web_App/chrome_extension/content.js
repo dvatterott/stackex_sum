@@ -1,5 +1,6 @@
 // content.js
 
+//when the background app detects a button press, tell it change the url
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if( request.message === "clicked_browser_action" ) {
