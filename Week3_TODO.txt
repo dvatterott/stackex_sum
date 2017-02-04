@@ -49,7 +49,8 @@ x 3. Get precision and recall of model
   5. Use lime to look at what my model likes...
 x 6. Change confusion matrix labels (helpful/unhelpful rather than good/bad)
 x 7. Titles for figures on website...
-  8. Create readme file(s) for github website. This should mostly be for explaining the code
+x 8. Create readme file(s) for github website. This should mostly be for explaining the code
+  9. Resume!!
 
 This weekend:
   1. Improve model

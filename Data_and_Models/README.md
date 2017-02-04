@@ -23,7 +23,7 @@ This model uses a bag of words input with tf-idf the objects that perform count 
 Beware. The count vectorization transformer (unigrams and bigrams) takes awhile to load.
 All these can be loaded with joblib from sklearn.externals.
 
-### 1/27/2016
+### 1/27/17
 I am downloading new data from the stackoverlow website (see notes.txt). The csvs Python_2015_x.csv will be all 2015 questions!!! (api was being mean before and I got as many as I could)
 Never mind! Im staying with the old data! The new data does not have comments. Thank god I didn't drop the database!
 I am updating the new database though. Im just going to let it slowly hit the stackoverflow system until i get all of them.
