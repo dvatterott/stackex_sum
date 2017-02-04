@@ -1,14 +1,3 @@
-
-Client Id
-8819
-
-Client Secret
-bnX)DQ0D99SfGuPT3bT vBg((
-
-
-Key
-5*wCDZgONnIJ*aiaYeKjQQ((
-
 https://github.com/lucjon/Py-StackExchange
 https://github.com/lucjon/Py-StackExchange/wiki/Updating-to-v2.x
 https://github.com/lucjon/Py-StackExchange/wiki/FAQ

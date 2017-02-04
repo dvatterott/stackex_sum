@@ -1,7 +1,7 @@
 ############## Set up StackExchange API ################
 import stackexchange
 
-api_key = '5*wCDZgONnIJ*aiaYeKjQQ(('
+api_key = '*****'
 
 so = stackexchange.Site(stackexchange.StackOverflow,api_key)
 so.be_inclusive()
@@ -175,10 +175,10 @@ connect_str = "dbname='%s' user='%s' host='localhost' password='%s'"%(dbname,use
 con = psycopg2.connect(connect_str)
 cur = con.cursor() #create cursor for communicating with sql
 
-# Pass data to fill a query placeholders and let Psycopg perform
-# cur.execute("CREATE TABLE %s (id serial, q_id integer PRIMARY KEY, word_vec varchar, score integer, view_count integer);"%(q_tbname)) #note sure if this will work
-# cur.execute("CREATE TABLE %s (id serial PRIMARY KEY, a_id integer, q_id integer, word_vec varchar, score integer);"%(a_tbname)) #note sure if this will work
-# con.commit()
+Pass data to fill a query placeholders and let Psycopg perform
+cur.execute("CREATE TABLE %s (id serial, q_id integer PRIMARY KEY, word_vec varchar, score integer, view_count integer);"%(q_tbname)) #note sure if this will work
+cur.execute("CREATE TABLE %s (id serial PRIMARY KEY, a_id integer, q_id integer, word_vec varchar, score integer);"%(a_tbname)) #note sure if this will work
+con.commit()
 
 ##################### Get 2015 in seconds #####################################
 import datetime
