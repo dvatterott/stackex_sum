@@ -39,18 +39,21 @@ LINKS TO USE:
   http://stackoverflow.com/questions/13784192/creating-an-empty-pandas-dataframe-then-filling-it
   Find some other sites to use for this.
   http://stackoverflow.com/questions/9236926/concatenating-two-one-dimensional-numpy-arrays - this is where the site works less well
+  http://stackoverflow.com/questions/21887754/numpy-concatenate-two-arrays-vertically - similar topic but likes all the answers
+  http://stackoverflow.com/questions/306400/how-do-i-randomly-select-an-item-from-a-list-using-python
+  http://stackoverflow.com/questions/3501382/checking-whether-a-variable-is-an-integer-or-not
 
 Friday:
 x 1. Clean website
 x 2. Get everything on github
 x 3. Get precision and recall of model
-  4. BUG CHECK!!! (look at the site you know doesn't work - http://stackoverflow.com/questions/6771428/most-efficient-way-to-reverse-a-numpy-array)
+x 4. BUG CHECK!!! (look at the site you know doesn't work - http://stackoverflow.com/questions/6771428/most-efficient-way-to-reverse-a-numpy-array)
       Also, I know the site tries to function from the /questions/ page (not a specific question)
   5. Use lime to look at what my model likes...
 x 6. Change confusion matrix labels (helpful/unhelpful rather than good/bad)
 x 7. Titles for figures on website...
 x 8. Create readme file(s) for github website. This should mostly be for explaining the code
-  9. Resume!!
+x 9. Resume!!
 
 This weekend:
   1. Improve model

@@ -1,7 +1,7 @@
 from flask import request, redirect, Markup, render_template, url_for
 from Web_App import app
 from random import randint
-import requests, markdown
+import requests, markdown, random
 from bs4 import BeautifulSoup
 
 from Web_App.StackExchange_Query import *
@@ -55,6 +55,8 @@ def answers_input():
 def receive_input_query_se():
     url = request.args.get("url")
     q_id = [int(s) for s in url.split('/') if s.isdigit()]
+    if len(q_id) == 0: q_id = [39378902]
+    print(q_id)
     StackObj = acquire_SE_info(so,q_id)
     StackObj.sentences = True
     StackObj.get_question_Info()
@@ -63,13 +65,13 @@ def receive_input_query_se():
     good_sent = find_sent.find_helpful_sentences(StackObj)
     good_answers = good_sent['good_sent_text']
 
-    r = requests.get(url)
-    html_text = r.text
+    print('---------')
+    for items in good_answers:
+        print(items)
+        print('---------')
 
-    # print('-----------------')
-    # for items in good_answers:
-    #     print(items)
-    #     print('-----------------')
+    r = requests.get(StackObj.url)
+    html_text = r.text
 
     soup = BeautifulSoup(html_text,"lxml")
     head = soup.head

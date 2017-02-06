@@ -45,7 +45,10 @@ highlight_end = '</span>'
 class acquire_SE_info:
     def __init__(self,so,q_id, search=True,sentences=False):
         if search == True:
-            self.question = so.question(q_id)
+            try:
+                self.question = so.question(q_id)
+            except:
+                self.question = so.question([39378902]) #people can entire silly stuff into the dialoge prompt
             self.id = q_id
         else:
             self.question = q_id
@@ -131,7 +134,7 @@ class acquire_SE_info:
         for tags in text.find_all("td", class_=class_type):
             for i,good_string in enumerate(good_answers):
                 good_string = tokenizer.tokenize(good_string)
-                search_str = ''.join(['('+x+').*' for x in good_string if len(x) > 2])
+                search_str = ''.join(['('+x+').*' for x in good_string if len(x) > 4])
                 search_str = search_str[:-2]
                 new_text = ''.join([str(x) for x in tags.contents])
                 m = re.search(search_str, new_text, flags=re.IGNORECASE|re.DOTALL)
@@ -140,20 +143,21 @@ class acquire_SE_info:
                 tags.clear()
 
                 replacement_text = new_text[start:end]
-                pre_start = re.finditer(r'<code>|<p>',replacement_text)
-                if not pre_start:
-                    pass
-                else:
-                    for ii,start_i in enumerate(pre_start):
-                        replacement_text = replacement_text[:start_i.end()+(ii*len(highlight_start))] \
-                        + highlight_start + replacement_text[start_i.end()+(ii*len(highlight_start)):]
-                pre_end = re.finditer(r'</code>|</p>',replacement_text)
-                if not pre_end:
-                    pass
-                else:
-                    for ii,end_i in enumerate(pre_end):
-                        replacement_text = replacement_text[:end_i.start()+(ii*len(highlight_end))] \
-                        + highlight_start + replacement_text[end_i.start()+(ii*len(highlight_end)):]
+                for tag_start,tag_end in zip(['<code>','<p>'],['</code>','</p>']):
+                    pre_start = re.finditer(tag_start,replacement_text)
+                    if not pre_start:
+                        pass
+                    else:
+                        for ii,start_i in enumerate(pre_start):
+                            replacement_text = replacement_text[:start_i.end()+(ii*len(highlight_start))] \
+                            + highlight_start + replacement_text[start_i.end()+(ii*len(highlight_start)):]
+                    pre_end = re.finditer(tag_end,replacement_text)
+                    if not pre_end:
+                        pass
+                    else:
+                        for ii,end_i in enumerate(pre_end):
+                            replacement_text = replacement_text[:end_i.start()+(ii*len(highlight_end))] \
+                            + highlight_end + replacement_text[end_i.start()+(ii*len(highlight_end)):]
 
                 temp_text = new_text[:start] + highlight_start + \
                     replacement_text + highlight_end + new_text[end:]
@@ -232,7 +236,7 @@ class helpful_sentences:
             self.vectorizer = cPickle.load(open('./Data_and_Models/rnn_tokenizer.pkl', 'rb'), encoding='latin1')
             self.lg = mymodel
 
-    def find_helpful_sentences(self,StackObj, help_threshold=-0.5,print_on=False):
+    def find_helpful_sentences(self,StackObj, help_threshold=0.0,print_on=False):
         new_answer_dict = StackObj.answers_dict
         answers = []
         good_sent = []
@@ -254,13 +258,11 @@ class helpful_sentences:
                 x_tf = self.tf_transformer.transform(x_count)
                 y_pred = self.lg.decision_function(x_tf)
             else:
+                #print(just_tok)
                 just_tok = [self.vectorizer.texts_to_sequences(x) for x in just_tok]
-                if len(just_tok[0]) > 1:
-                    temp = []
-                    for items in just_tok: temp.append([x[0] for x in items if len(x)>0])
-                    just_tok = temp
-                else:
-                    just_tok = [[x[0] for x in just_tok if len(x)>0]]
+                temp = []
+                for items in just_tok: temp.append([x[0] for x in items if len(x)>0])
+                just_tok = temp
 
                 padded_seq = pad_sequences(just_tok,maxlen=self.MAX_SEQUENCE_LENGTH)
                 seq = np.array(padded_seq)
