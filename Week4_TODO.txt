@@ -1,0 +1,44 @@
+TODO:
+  1. Use lime to look at what my model likes...
+  2. Try to combine the good answer finding system and the highlighting systems
+  3. Maybe look into training my own method for finding sentence breaks...
+  4. Make sure the linear plots are actually from my linear regression and not from random forest
+  5. combine roc plots in inkscape (if using the plots from the linear model)
+
+Use hashing vectorizer instead of count vectorizer (if sticking with count)
+
+Threshold. And color items according to how helpful (shades of yellow)
+Maybe look at only the code and learn good code vs bad code
+
+Presentation Notes
+  1. How to wrap up the arc of your story/pitch
+  2. what can people now do?
+  3. mention deliverable up front
+  4. name on about me
+  5. maybe put model results on the same plot.slide.
+  6. emphasize that I treated this as a classifcation problem and why this was important.
+  7. emphasize that my products works at the sentence level
+  8. Get more examples for the demonstrates
+  9. backup slides in case app fails
+  10. tighten it up!
+
+LINKS TO USE:
+  http://stackoverflow.com/questions/13784192/creating-an-empty-pandas-dataframe-then-filling-it
+  Find some other sites to use for this.
+  http://stackoverflow.com/questions/9236926/concatenating-two-one-dimensional-numpy-arrays - this is where the site works less well
+  http://stackoverflow.com/questions/21887754/numpy-concatenate-two-arrays-vertically - similar topic but likes all the answers
+  http://stackoverflow.com/questions/306400/how-do-i-randomly-select-an-item-from-a-list-using-python
+  http://stackoverflow.com/questions/3501382/checking-whether-a-variable-is-an-integer-or-not
+
+
+To run the server as a background app run (from ~/application & insight environment):
+  gunicorn Web_App:app -D
+To turn it off run:
+  pkill gunicorn
+
+this is from my p2
+$ scp ubuntu@ec2-34-195-103-84.compute-1.amazonaws.com:/home/ubuntu/nbs/stackex_gru.h5 /home/dan-laptop/Insight/stackex_gru.h5
+this is from my t2
+$ scp ubuntu@ec2-34-198-227-154.compute-1.amazonaws.com:/home/ubuntu/application/Web_App/views.py /home/dan-laptop/Insight/stackex_sum/Web_App/views.py
+
+http://www.appscare.com/2015/03/embed-google-slides-webpage/

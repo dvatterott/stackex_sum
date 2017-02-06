@@ -93,3 +93,7 @@ def receive_input_query_se():
 
     return render_template("output.html",\
                             text = Markup(soup))
+
+@app.route('/slides')
+def slides():
+    return render_template("slides.html")

@@ -59,6 +59,12 @@ This weekend:
   1. Improve model
   2. javascript addon??
 
+Tonight:
+  1. Try to combine the good answer finding system and the highlighting systems
+  2. Maybe look into training my own method for finding sentence breaks...
+  3. Make sure the linear plots are actually from my linear regression and not from random forest
+  4. combine roc plots in inkscape
+
 
 Are there already highlighter chrome extensions??
 
