@@ -1,26 +1,22 @@
 TODO:
-  1. Use lime to look at what my model likes...
-  2. Try to combine the good answer finding system and the highlighting systems
-  3. Maybe look into training my own method for finding sentence breaks...
-  4. Make sure the linear plots are actually from my linear regression and not from random forest
+  1. Use lime to look at what my model likes...AND ADD SLIDE ABOUT THIS
+x 2. add slides to website
+/ 2. Try to combine the good answer finding system and the highlighting systems
+/ 3. Maybe look into training my own method for finding sentence breaks...
+x 4. Make sure the linear plots are actually from my linear regression and not from random forest
   5. combine roc plots in inkscape (if using the plots from the linear model)
+x 6. Make neural network graph slide
+  7. make technical error backup slides
+x 8. edit axes on slides (answer histograms and viewcount x answerscore)
+  9. change slide link to the most recent version of slides
+
+x = done
+/ = on ice
 
 Use hashing vectorizer instead of count vectorizer (if sticking with count)
 
 Threshold. And color items according to how helpful (shades of yellow)
 Maybe look at only the code and learn good code vs bad code
-
-Presentation Notes
-  1. How to wrap up the arc of your story/pitch
-  2. what can people now do?
-  3. mention deliverable up front
-  4. name on about me
-  5. maybe put model results on the same plot.slide.
-  6. emphasize that I treated this as a classifcation problem and why this was important.
-  7. emphasize that my products works at the sentence level
-  8. Get more examples for the demonstrates
-  9. backup slides in case app fails
-  10. tighten it up!
 
 LINKS TO USE:
   http://stackoverflow.com/questions/13784192/creating-an-empty-pandas-dataframe-then-filling-it
