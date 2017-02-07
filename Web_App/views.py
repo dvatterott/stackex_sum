@@ -69,6 +69,8 @@ def receive_input_query_se():
     good_sent = find_sent.find_helpful_sentences(StackObj)
     good_answers = good_sent['good_sent_text']
 
+    num_good_answers = len(good_answers)
+
     r = requests.get(StackObj.url)
     html_text = r.text
 
@@ -89,7 +91,7 @@ def receive_input_query_se():
         body.insert(0,soup.new_tag('h1'))
         body.h1.insert(0,warning_text)
         soup.body = body
-    if len(good_answers) == 0:
+    if num_good_answers == 0:
         body = soup.body
         body.insert(0,soup.new_tag('h1'))
         body.h1.insert(0,nogood_text)

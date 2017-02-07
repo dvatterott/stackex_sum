@@ -10,6 +10,7 @@ x 7. make technical error backup slides
 x 8. edit axes on slides (answer histograms and viewcount x answerscore)
 x 9. change slide link to the most recent version of slides
 x 10. make the app say something if nothing to highlight
+  11. look into how much I can shrink the size of my aws instance. 
 
 x = done
 / = on ice
