@@ -4,11 +4,12 @@ x 2. add slides to website
 / 2. Try to combine the good answer finding system and the highlighting systems
 / 3. Maybe look into training my own method for finding sentence breaks...
 x 4. Make sure the linear plots are actually from my linear regression and not from random forest
-  5. combine roc plots in inkscape (if using the plots from the linear model)
+x 5. combine roc plots in inkscape (if using the plots from the linear model)
 x 6. Make neural network graph slide
-  7. make technical error backup slides
+x 7. make technical error backup slides
 x 8. edit axes on slides (answer histograms and viewcount x answerscore)
-  9. change slide link to the most recent version of slides
+x 9. change slide link to the most recent version of slides
+x 10. make the app say something if nothing to highlight
 
 x = done
 / = on ice

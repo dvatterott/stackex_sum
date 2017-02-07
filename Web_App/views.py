@@ -42,6 +42,10 @@ highlight_css = """
 warning_text = """
         I'm only a python expert, so my helpfulness here is questionable. :/ \n
     """
+nogood_text = """
+        I didn't find any helpful answers here. :T \n
+    """
+
 
 @app.route('/')
 def answers_input():
@@ -65,11 +69,6 @@ def receive_input_query_se():
     good_sent = find_sent.find_helpful_sentences(StackObj)
     good_answers = good_sent['good_sent_text']
 
-    print('---------')
-    for items in good_answers:
-        print(items)
-        print('---------')
-
     r = requests.get(StackObj.url)
     html_text = r.text
 
@@ -89,6 +88,11 @@ def receive_input_query_se():
         body = soup.body
         body.insert(0,soup.new_tag('h1'))
         body.h1.insert(0,warning_text)
+        soup.body = body
+    if len(good_answers) == 0:
+        body = soup.body
+        body.insert(0,soup.new_tag('h1'))
+        body.h1.insert(0,nogood_text)
         soup.body = body
 
     return render_template("output.html",\
