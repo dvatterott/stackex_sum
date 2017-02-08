@@ -18,6 +18,7 @@ x 14. remake all plots with seaborn style... (just turn off the center part for 
 
   XX. update blog post and images to match presentation!
   XX. work on linkedin
+  XX. clean github
 
 TAGLINES:
   Highlight helpful parts of Stack Overflow answers
@@ -25,8 +26,6 @@ TAGLINES:
 x = done
 / = on ice
 - = in progress
-
-Use hashing vectorizer instead of count vectorizer (if sticking with count)
 
 Threshold. And color items according to how helpful (shades of yellow)
 Maybe look at only the code and learn good code vs bad code

@@ -134,8 +134,8 @@ class acquire_SE_info:
         for tags in text.find_all("td", class_=class_type):
             for i,good_string in enumerate(good_answers):
                 good_string = tokenizer.tokenize(good_string)
-                search_str = ''.join(['('+x+').*' for x in good_string if len(x) > 4])
-                search_str = search_str[:-2]
+                search_str = ''.join(['('+x+').*' for x in good_string if len(x) > 2])
+                search_str = '\s'+search_str[:-2]
                 new_text = ''.join([str(x) for x in tags.contents])
                 m = re.search(search_str, new_text, flags=re.IGNORECASE|re.DOTALL)
                 if not m: continue
