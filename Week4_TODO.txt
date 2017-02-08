@@ -1,5 +1,5 @@
 TODO:
-  1. Use lime to look at what my model likes...AND ADD SLIDE ABOUT THIS
+- 1. Use lime to look at what my model likes...AND ADD SLIDE ABOUT THIS
 x 2. add slides to website
 / 2. Try to combine the good answer finding system and the highlighting systems
 / 3. Maybe look into training my own method for finding sentence breaks...
@@ -11,10 +11,20 @@ x 8. edit axes on slides (answer histograms and viewcount x answerscore)
 x 9. change slide link to the most recent version of slides
 x 10. make the app say something if nothing to highlight
 x 11. look into how much I can shrink the size of my aws instance.
-  12. add icon to tabs!
+x 12. add icon to tabs!
+x 13. make new classification vs regression slide (show what percent of answers are above a ratings of 2...)
+x 14. remake all plots with seaborn style... (just turn off the center part for confusion matrices. there's an easy style command for this)
+  15. Think long and hard about argument for what model to use
+
+  XX. update blog post and images to match presentation!
+  XX. work on linkedin
+
+TAGLINES:
+  Highlight helpful parts of Stack Overflow answers
 
 x = done
 / = on ice
+- = in progress
 
 Use hashing vectorizer instead of count vectorizer (if sticking with count)
 

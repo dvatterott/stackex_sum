@@ -1,5 +1,5 @@
 TODO:
-  1. Get full python dataset from stackoverflow (link??)
+x 1. Get full python dataset from stackoverflow (link??)
 x 2. Draw web app
   3. Get topic modeling from document to sentence level algorithm written
   4. Develop way to compare topic modeling algorithm to chance
