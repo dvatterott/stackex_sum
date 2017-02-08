@@ -60,7 +60,6 @@ def receive_input_query_se():
     url = request.args.get("url")
     q_id = [int(s) for s in url.split('/') if s.isdigit()]
     if len(q_id) == 0: q_id = [39378902]
-    print(q_id)
     StackObj = acquire_SE_info(so,q_id)
     StackObj.sentences = True
     StackObj.get_question_Info()
