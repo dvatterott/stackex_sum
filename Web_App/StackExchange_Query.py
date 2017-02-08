@@ -269,7 +269,6 @@ class helpful_sentences:
                 y_pred = self.lg.predict(seq)
                 y_pred = y_pred[:,1] - y_pred[:,0]
 
-            print(y_pred)
             answers.append(y_pred)
 
             if len(np.where(y_pred>=help_threshold)[0])>0:
