@@ -345,6 +345,20 @@ for i,question in enumerate(so.questions(tagged=['python'], pagesize=100, fromda
     if i % 100==0:
         print('i looked at %s out of %s possible questions so far!'% (total, i))
 
+answers_model_likes = {}
+answers_model_likes['total'] = total
+answers_model_likes['no_good'] = no_good
+answers_model_likes['good'] = good
+answers_model_likes['skip_first'] = skip_first
+answers_model_likes['multi'] = multi
+answers_model_likes['where_good'] = where_good
+answers_model_likes['skip_bool'] = skip_bool
+
+import pickle
+name = 'answers_model_likes'
+with open('./'+ name + '.pkl', 'wb') as f:
+    pickle.dump(answers_model_likes, f, pickle.HIGHEST_PROTOCOL)
+
 #import matplotlib.pyplot as plt
 #plt.hist(where_good)
 #plt.hist(np.array(where_good)[np.where(skip_bool)[0]])
