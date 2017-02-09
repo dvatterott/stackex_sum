@@ -1,7 +1,8 @@
 ############## Set up StackExchange API ################
 import stackexchange
 
-api_key = '*****'
+import os
+password = os.environ['SO_PASSWORD']
 
 so = stackexchange.Site(stackexchange.StackOverflow,api_key)
 so.be_inclusive()
@@ -153,7 +154,7 @@ from sqlalchemy import create_engine
 from sqlalchemy_utils import database_exists, create_database
 import psycopg2
 
-dbname = 'stack_exchange_rnn_db'
+dbname = 'stack_exchange_rnn_db2016'
 q_tbname = 'question_table'
 a_tbname = 'answer_table'
 username = 'dan-laptop'
@@ -175,26 +176,26 @@ connect_str = "dbname='%s' user='%s' host='localhost' password='%s'"%(dbname,use
 con = psycopg2.connect(connect_str)
 cur = con.cursor() #create cursor for communicating with sql
 
-Pass data to fill a query placeholders and let Psycopg perform
-cur.execute("CREATE TABLE %s (id serial, q_id integer PRIMARY KEY, word_vec varchar, score integer, view_count integer);"%(q_tbname)) #note sure if this will work
-cur.execute("CREATE TABLE %s (id serial PRIMARY KEY, a_id integer, q_id integer, word_vec varchar, score integer);"%(a_tbname)) #note sure if this will work
-con.commit()
+#Pass data to fill a query placeholders and let Psycopg perform
+#cur.execute("CREATE TABLE %s (id serial, q_id integer PRIMARY KEY, word_vec varchar, score integer, view_count integer);"%(q_tbname)) #note sure if this will work
+#cur.execute("CREATE TABLE %s (id serial PRIMARY KEY, a_id integer, q_id integer, word_vec varchar, score integer);"%(a_tbname)) #note sure if this will work
+#con.commit()
 
 ##################### Get 2015 in seconds #####################################
 import datetime
 import time
 import pandas as pd
 
-t_start = datetime.datetime(2015, 1, 1, 0, 0)
+t_start = datetime.datetime(2016, 1, 1, 0, 0)
 t_start_sec = (t_start-datetime.datetime(1970,1,1)).total_seconds()
-t_end = datetime.datetime(2016, 1, 1, 0, 0)
+t_end = datetime.datetime(2017, 1, 1, 0, 0)
 t_end_sec = (t_end-datetime.datetime(1970,1,1)).total_seconds()
 
 ##################### Get data from stackexchange
 
 added = 0
 
-for i,question in enumerate(so.questions(tagged=['python'], pagesize=100, fromdate=t_start_sec, todate=t_end_sec)):
+for i,question in enumerate(so.questions(tagged=['python'], pagesize=100, fromdate=t_start_sec, todate=t_end_sec, sort=stackexchange.Sort.Creation)):
     time.sleep(0.1) #stackoverflow hates me :(
     StackObj = acquire_SE_info(so,question,search=False) #[python] [numpy]
     StackObj.get_question_Info()

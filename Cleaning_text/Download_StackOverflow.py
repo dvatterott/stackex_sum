@@ -1,7 +1,7 @@
 ############## Set up StackExchange API ################
-import stackexchange
+import stackexchange, os
 
-api_key = '******'
+api_key = os.environ['SO_PASSWORD']
 
 so = stackexchange.Site(stackexchange.StackOverflow,api_key)
 so.be_inclusive()

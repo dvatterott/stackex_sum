@@ -14,11 +14,25 @@ x 11. look into how much I can shrink the size of my aws instance.
 x 12. add icon to tabs!
 x 13. make new classification vs regression slide (show what percent of answers are above a ratings of 2...)
 x 14. remake all plots with seaborn style... (just turn off the center part for confusion matrices. there's an easy style command for this)
-  15. Think long and hard about argument for what model to use
+- 15. get 2016 data and look at how often my model likes the first answer vs the second ect.
+  16. put stackoverflow password on my t2 aws instance (bash_profile or bashrc)
+  17. build model with residuals after removing variance explained by view count.
+
+Presentation notes:
+ * make the summary more summarary
+ * Lots of questions about how decided to label answers with a score of 2 as "helpful." basically, how much can we trust this. how could i improve groundtruth? regressing out number of views...
+ * unclear why bad recall is ok
+ * what answers tend to be highlighted? how often not the first answer? (how often not first and why does this happen)
+ * description of RNN
+ * would the model improve with more data?
+ * what could be a business application
+
+FOR LIME PLOT - MAYBE THIS SHOULD BE NUMBER OF TIMES A WORD APPEARED IN THIS TOP LIST... weighted by the frequency of the word??
 
   XX. update blog post and images to match presentation!
   XX. work on linkedin
   XX. clean github
+  XX. reread bengio chapter on recurrent neural nets
 
 TAGLINES:
   Highlight helpful parts of Stack Overflow answers
@@ -48,5 +62,7 @@ this is from my p2
 $ scp ubuntu@ec2-34-195-103-84.compute-1.amazonaws.com:/home/ubuntu/nbs/stackex_gru.h5 /home/dan-laptop/Insight/stackex_gru.h5
 this is from my t2
 $ scp ubuntu@ec2-34-198-227-154.compute-1.amazonaws.com:/home/ubuntu/application/Web_App/views.py /home/dan-laptop/Insight/stackex_sum/Web_App/views.py
+$ scp /home/dan-laptop/Insight/stackex_sum/Web_App/StackExchange_Query.py ubuntu@ec2-34-198-227-154.compute-1.amazonaws.com:/home/ubuntu/application/Web_App/StackExchange_Query.py
+
 
 http://www.appscare.com/2015/03/embed-google-slides-webpage/

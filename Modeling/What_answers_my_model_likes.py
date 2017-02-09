@@ -232,9 +232,9 @@ class helpful_sentences:
             mymodel.compile(loss='categorical_crossentropy',
                           optimizer='adam',
                           metrics=['acc'])
-            mymodel.load_weights('./Data_and_Models/stackex_gru.h5')
+            mymodel.load_weights('../Data_and_Models/stackex_gru.h5')
             print('Gimme that overflow!')
-            self.vectorizer = cPickle.load(open('./Data_and_Models/rnn_tokenizer.pkl', 'rb'), encoding='latin1')
+            self.vectorizer = cPickle.load(open('../Data_and_Models/rnn_tokenizer.pkl', 'rb'), encoding='latin1')
             self.lg = mymodel
 
     def find_helpful_sentences(self,StackObj, help_threshold=0.0,print_on=False):
@@ -244,6 +244,7 @@ class helpful_sentences:
         good_sent_text = []
         good_raw = []
         good_toks = []
+        ranker = []
 
         for keys in new_answer_dict:
             a_dict = new_answer_dict[keys]
@@ -278,10 +279,72 @@ class helpful_sentences:
                 good_sent_text.append(a_vect[find_good_sent])
                 good_raw.append(a_raw[find_good_sent])
                 good_toks.append(just_tok[find_good_sent])
+                ranker.append(a_dict['rank'])
                 if print_on == True: print(a_vect[find_good_sent])
         answer_dict = {'prediction':answers,\
                         'good_sent_num':good_sent,\
                         'good_sent_text':good_sent_text,\
                         'good_toks': good_toks,\
-                        'good_raw':good_raw}
+                        'good_raw':good_raw,\
+                        'rank':ranker}
         return answer_dict
+
+############### create object for querying stackoverflow #############
+se_query = setup_se_api_requests()
+so = se_query.stack_exchange_query()
+
+find_sent = helpful_sentences() #loading the model to find helpful sentences takes awhile
+
+##################### Get 2015 in seconds #####################################
+import datetime
+import time
+import pandas as pd
+
+t_start = datetime.datetime(2016, 1, 1, 0, 0)
+t_start_sec = (t_start-datetime.datetime(1970,1,1)).total_seconds()
+t_end = datetime.datetime(2017, 1, 1, 0, 0)
+t_end_sec = (t_end-datetime.datetime(1970,1,1)).total_seconds()
+
+##################### Get data from stackexchange######################
+total, no_good, good, skip_first, multi = 0,0,0,0,0
+where_good, skip_bool = [], []
+
+for i,question in enumerate(so.questions(tagged=['python'], pagesize=100, fromdate=t_start_sec, todate=t_end_sec)):
+    time.sleep(0.1) #stackoverflow hates me :(
+    StackObj = acquire_SE_info(so,question,search=False)
+    StackObj.sentences = True
+    StackObj.get_question_Info()
+    StackObj.get_answer_Info()
+
+    if StackObj.view_count < 50:
+        continue
+
+    total += 1
+    new_answer_dict = StackObj.answers_dict
+    score_list = [new_answer_dict[x]['score'] for x in new_answer_dict.keys()]
+    sort_list = np.argsort(score_list)
+    for ii,x in enumerate(sort_list[::-1]): new_answer_dict[x]['rank'] = ii
+    StackObj.answers_dict = new_answer_dict
+
+    good_sent = find_sent.find_helpful_sentences(StackObj)
+
+    good_answers = good_sent['good_sent_text']
+    num_good_answers = len(good_answers)
+    if num_good_answers == 0:
+        no_good +=1
+    else:
+        good +=1
+        where_good.extend(good_sent['rank'])
+        if len(good_sent['rank']) > 1: multi +=1
+        if 0 not in good_sent['rank']:
+            skip_first += 1
+            skip_bool.extend([True]*len(good_sent['rank']))
+        else:
+            skip_bool.extend([False]*len(good_sent['rank']))
+
+    if i % 100==0:
+        print('i looked at %s out of %s possible questions so far!'% (total, i))
+
+#import matplotlib.pyplot as plt
+#plt.hist(where_good)
+#plt.hist(np.array(where_good)[np.where(skip_bool)[0]])
