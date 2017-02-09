@@ -15,8 +15,8 @@ x 12. add icon to tabs!
 x 13. make new classification vs regression slide (show what percent of answers are above a ratings of 2...)
 x 14. remake all plots with seaborn style... (just turn off the center part for confusion matrices. there's an easy style command for this)
 - 15. get 2016 data and look at how often my model likes the first answer vs the second ect.
-  16. put stackoverflow password on my t2 aws instance (bash_profile or bashrc)
-  17. build model with residuals after removing variance explained by view count.
+x 16. put stackoverflow password on my t2 aws instance (bash_profile or bashrc)
+- 17. build model with residuals after removing variance explained by view count.
 
 Presentation notes:
  * make the summary more summarary
@@ -24,8 +24,8 @@ Presentation notes:
  * unclear why bad recall is ok
  * what answers tend to be highlighted? how often not the first answer? (how often not first and why does this happen)
  * description of RNN
- * would the model improve with more data?
- * what could be a business application
+x* would the model improve with more data?
+x* what could be a business application
 
 FOR LIME PLOT - MAYBE THIS SHOULD BE NUMBER OF TIMES A WORD APPEARED IN THIS TOP LIST... weighted by the frequency of the word??
 
@@ -60,9 +60,20 @@ To turn it off run:
 
 this is from my p2
 $ scp ubuntu@ec2-34-195-103-84.compute-1.amazonaws.com:/home/ubuntu/nbs/stackex_gru.h5 /home/dan-laptop/Insight/stackex_gru.h5
+scp /home/dan-laptop/Insight/stackex_sum/Modeling/answer_db.csv ubuntu@ec2-34-195-103-84.compute-1.amazonaws.com:/home/ubuntu/nbs/answer_db.csv
 this is from my t2
 $ scp ubuntu@ec2-34-198-227-154.compute-1.amazonaws.com:/home/ubuntu/application/Web_App/views.py /home/dan-laptop/Insight/stackex_sum/Web_App/views.py
 $ scp /home/dan-laptop/Insight/stackex_sum/Web_App/StackExchange_Query.py ubuntu@ec2-34-198-227-154.compute-1.amazonaws.com:/home/ubuntu/application/Web_App/StackExchange_Query.py
 
 
 http://www.appscare.com/2015/03/embed-google-slides-webpage/
+
+Functional links: 5/5.
+Text Quality: 4/5 Improve structure, headings, readability.
+Intended User: 3/5 Make this super clear with a goal statement that is highlighted.
+Context: 5/5 Great graphs giving context to results. Easy to read and well explained.
+Features: 4/5 Having to read through the page to find highlights can be time consuming. Top summary could be useful but might be hard to implement in time.
+Intuitive: 4/5 Improve link titles.
+Understand how to use: 4/5 Link titles would improve this.
+About Me: 5/5 Great content.
+Well designed: 3/5. Lacks some visual appeal. Block elements, better text formatting, better fonts, more chunking of details could improve it substantially.

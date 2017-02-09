@@ -1,9 +1,13 @@
 
-![sifting stackoverflow example](/static/web_images/website_sifting.png)
+<p align="center">
+  <img src="/static/web_images/website_sifting.png"/>
+</p>
 
 Stackoverflow is a great resource with an amazing amount of content, which makes it extremely useful, but also makes its hard to use. This is especially true for beginners who do not know where to look for the most important parts of programming language.
 
 Sifting the Overflow is designed specifically for helping users identify the helpful portions of answers to Stackoverflow questions about python. To design this browser extension, I used the [stackoverflow api](https://api.stackexchange.com/docs) and the python library [py-stackexchange](https://github.com/lucjon/Py-StackExchange) to collect every Stackoverflow question about python asked during 2015 (almost 140,000) and the associated answers (almost 500,000!).
+
+## Data Prep and Preprocessing
 
 I stored all this data in a [postgres database](https://www.postgresql.org/), and queried the database for the data used to train my model. Over the course of this project, I tried a variety of models; the first model I trained was based on a [bag-of-words (bow)](http://scikit-learn.org/stable/tutorial/text_analytics/working_with_text_data.html#bags-of-words) representation of the data.
 
@@ -11,19 +15,29 @@ Preparing the data for data for my model involved a number of preprocessing step
 
 The final preprocessing step was to vectorize the words, which means that I assigned a different number to each distinct word. For example, the word python might be number 8. Whenever python appears in an answer, it's replaced by the number 8. For each answer I then count the number of times each distinct word appeared in that answer (maybe now you see why I wanted to shed as many meaningless words as possible), and this vector (the number of times each possible word appeared) is how I represented each Stackoverflow answer... well not quite, I also did used [tf-idf](https://lizrush.gitbooks.io/algorithms-for-webdevs-ebook/content/chapters/tf-idf.html) to penalize words that appear frequently because of the specific topic that all my text discusses (Python programming). For example, you might expect Python to appear in every answer and not be effective at discriminating between good and bad python answers.  
 
-![stackoverflow answers](/static/web_images/both_problem.png)
+<p align="center">
+  <img src="/static/web_images/both_problem.png"/>
+</p>
 
 I've written a lot about what features (words) I will use to predict the helpfulness of an answer, but I haven't said anything about how I will define helpful and unhelpful answers. Stackoverflow is full of answers, the majority of which (see figure above) are unhelpful. This plot is a histogram with the rating of Stackoverflow responses (upvotes-downvotes) on the x-axis, and my goal is to identify the helpful responses. Most answers receive no upvotes, but a few answers receive many. It turns out that most these highly rated answers are also highly viewed questions (see figure below). This could be because the answers are so great, or, maybe, its because Stackoverflow visitors frequently need an answer to these questions. It's hard to differentiate between these possibilities. I avoided this question by treating any answer with a score of two or more as a helpful answer and any answer with a score of less than 2 as an unhelpful answer.
 
-![viewcount and answerscores stackoverflow](/static/web_images/Score_by_View_Slide.png)
+<p align="center">
+  <img src="/static/web_images/Score_by_View_Slide.png"/>
+</p>
+
+## Modeling
 
 After all this preprocessing, it was finally time to try a model. The first model I tried was a logistic regression with [l2 regularization](https://www.quora.com/Why-is-L1-regularization-better-than-L2-regularization-provided-that-all-Norms-are-equivalent). I didn't really experiment much with whether l1 or l2 regularization would be better, because over-fitting this dataset was never a problem.  
 
-![logistic regression performance](/static/web_images/LogReg_Perf2.png)
+<p align="center">
+  <img src="/static/web_images/LogReg_Perf2.png"/>
+</p>
 
 Above I depict a [confusion matrix](https://docs.wso2.com/display/ML100/Model+Evaluation+Measures) with my model's performance. The confusion matrix demonstrates that my model is much better at identifying unhelpful responses than helpful answers. This is because the unhelpful answers are so much more common than the helpful answers. Nonetheless, the model still guesses helpful responses more often than it would by chance (20%).
 
-![most important words](/static/web_images/lg_beta_weights.png)
+<p align="center">
+  <img src="/static/web_images/lg_beta_weights.png"/>
+</p>
 
 Above, I depict the beta weights of the twenty most impactful words. Most these words look like words that would appear in code (e.g., import), suggesting that people find answers with code more helpful!
 
@@ -35,6 +49,8 @@ Even with my data in the embedding matrix, my model didn't see any dramatic impr
 
 Below, I depict the performance of my recurrent neural net. While, the model isn't perfect, it yields an increase of the precision of the model. Recall is still a problem, but the model has improved its ability to differentiate between helpful and unhelpful answers.
 
-![rnn performance](/static/web_images/gru_confmat.png)
+<p align="center">
+  <img src="/static/web_images/gru_confmat.png"/>
+</p>
 
 If you liked this post, check out my [blog](http://www.danvatterott.com/blog/) where I regularly post similar content.
