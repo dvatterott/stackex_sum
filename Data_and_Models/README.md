@@ -36,3 +36,10 @@ Added data (weights+vectorizer) for my RNN model.
 
 ### 2/3/17
 Moved all items over 100mb ~/Insight/stackex_sum_noGit because these files are too big for github. :( Let me know if you want to use them.
+
+### 2/9/17
+moved some files here.
+* view_count_model.pkl is a linear regression of view_count on answer score. basically how much does answer score increase with view count. used for removing variance associated with view count from answer scores.
+* lime_dict.pkl this is a dictionary with the words the best discriminate between helpful and unhelpful answers on this question (using rnn model)-   http://stackoverflow.com/questions/3501382/checking-whether-a-variable-is-an-integer-or-not
+* lime_dict_train.pkl is a work in progress, but so far its the words the best discriminate between helpful and unhelpful answers from about 1000 answers (these use the library lime. check out Interpreting Model_trainingset.ipynb for how this was generated. uses rnn model.)
+* answers_model_likes.pkl are data depicting what answers my model tends to choose as helpful. Not in terms of the words, but in terms of the highest scored answer on the page vs the lowest scored answer. Check out what_answers_my_model_likes.py for how this was created and ""plots.ipynb for plots with this data.

@@ -48,15 +48,11 @@ if control_var == 'answer':
                 if count == samples:break
         if count == samples:break
 
-    plt.Figure()
-    sns.distplot(answer_scores,kde=False)
+    sns.set_context("poster")
+    plt.Figure() #765 with two
+    sns.distplot(answer_scores,bins=40,kde=False, hist_kws={"range":(-10,30)}, norm_hist=True)
+    plt.xlim((-10,30))
     plt.show()
-
-    # sns.set_context("poster")
-    # plt.Figure() #765 with two
-    # sns.distplot(answer_scores,bins=40,kde=False, hist_kws={"range":(-10,30)}, norm_hist=True)
-    # plt.xlim((-10,30))
-    # plt.show()
 
 ##########Question by Answer Scores####################
 

@@ -35,8 +35,9 @@ class setup_se_api_requests:
     def stack_exchange_query(self):
         return self.so
 
-
 ########## the function that i wrote for getting stack exchange info#######
+#from StackExchange_Query import * (modified)
+
 p_stemmer = PorterStemmer()
 tokenizer = RegexpTokenizer('\w+')
 highlight_start = '<span class="highlightme">'
@@ -135,7 +136,6 @@ class acquire_SE_info:
             for i,good_string in enumerate(good_answers):
                 good_string = tokenizer.tokenize(good_string)
                 search_str = ''.join(['('+x+').*' for x in good_string if len(x) > 4])
-                #\((?=\S)
                 search_str = '\s'+search_str[:-2]
                 new_text = ''.join([str(x) for x in tags.contents])
                 m = re.search(search_str, new_text, flags=re.IGNORECASE|re.DOTALL)
