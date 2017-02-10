@@ -61,6 +61,7 @@ def receive_input_query_se():
     q_id = [int(s) for s in url.split('/') if s.isdigit()]
     if len(q_id) == 0: q_id = [39378902]
     StackObj = acquire_SE_info(so,q_id)
+    StackObj.model_prep=False #prep for rnn instead of bow
     StackObj.sentences = True
     StackObj.get_question_Info()
     StackObj.get_answer_Info()

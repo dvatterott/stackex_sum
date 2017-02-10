@@ -54,6 +54,7 @@ class acquire_SE_info:
             self.id = q_id.id
 
         self.question_tokens = []
+        self.tags = self.question.tags
         self.answers_dict = {}
         self.score = 0
         self.view_count = self.question.view_count
@@ -247,10 +248,10 @@ class helpful_sentences:
             a_dict = new_answer_dict[keys]
             a_vect = a_dict['tokens']
             a_raw = a_dict['raw']
-            just_tok = [StackObj.fetch_and_clean(x,model_prep=False) for x in a_vect]
+            just_tok = [StackObj.fetch_and_clean(x) for x in a_vect]
 
             if self.model == 'Linear':
-                tokens = [','.join(StackObj.fetch_and_clean(x, model_prep=True)) for x in a_vect]
+                tokens = [','.join(StackObj.fetch_and_clean(x)) for x in a_vect]
 
                 #transform each word vector into the count vector (bow)
                 x_count = self.vectorizer.transform(tokens)
