@@ -20,7 +20,21 @@ from keras.models import Model
 import six.moves.cPickle as cPickle
 
 import re
+############## Set up StackExchange API ################
+class setup_se_api_requests:
+    def __init__(self,impose_throttling=True,throttle_stop=False):
+        self.api_key = os.environ['SO_PASSWORD']
 
+        so = stackexchange.Site(stackexchange.StackOverflow,self.api_key)
+        so.be_inclusive()
+        so.impose_throttling = impose_throttling
+        so.throttle_stop = throttle_stop
+        self.so = so
+
+    def stack_exchange_query(self):
+        return self.so
+
+########## the function that i wrote for getting stack exchange info#######
 #load stemmer and tokenizer
 p_stemmer = PorterStemmer()
 tokenizer = RegexpTokenizer('\w+')
