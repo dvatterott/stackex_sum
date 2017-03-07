@@ -17,7 +17,8 @@ x 14. remake all plots with seaborn style... (just turn off the center part for 
 x 15. get 2016 data and look at how often my model likes the first answer vs the second ect.
 x 16. put stackoverflow password on my t2 aws instance (bash_profile or bashrc)
 x 17. build model with residuals after removing variance explained by view count.
-  18. replace rnn ipynb notebook...
+x 18. replace rnn ipynb notebook...
+  19. retrain net but with binary crossentropy an single output
 
 Presentation notes:
  * make the summary more summarary

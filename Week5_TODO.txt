@@ -1,0 +1,75 @@
+TODO:
+  1. edit linkedin site
+  2. SQL !!!!!
+  3. probability
+  4. leetcode !!!!!
+  5. cs fundamentals !!!!
+  6. statistics
+  7. machine learning
+
+  MEMORIZE STAR AND DO INTERVIEW FAQ!!!!!!!
+
+  8. ask company whether they have a hard stop at the scheduled time
+  9. practice intro
+ 10. record presentation times and questions
+ 11. make sure that everyone stays on schedule
+
+sql problems to work on
+ https://community.modeanalytics.com/sql/tutorial/sql-left-join/
+ https://community.modeanalytics.com/sql/tutorial/sql-joins-where-vs-on/
+ https://community.modeanalytics.com/sql/tutorial/sql-full-outer-join/
+ http://stackoverflow.com/questions/11427300/self-join-to-get-employee-manager-name
+ https://bikashshaw.wordpress.com/2014/02/10/employee-id-employee-name-and-manager-id-self-join-sql-query-as-interview-question/
+
+TOMORROW:
+  Do behavioral,stats, and machine learning
+  DO PROBABILITY!!
+
+ LEETCODE WORK ON
+  https://leetcode.com/problems/hamming-distance/
+  https://leetcode.com/problems/maximum-depth-of-binary-tree/
+  https://leetcode.com/problems/island-perimeter/
+  https://leetcode.com/problems/find-the-difference/
+  https://leetcode.com/problems/relative-ranks/?tab=Description
+  https://leetcode.com/problems/first-unique-character-in-a-string/?tab=Solutions
+  https://leetcode.com/problems/happy-number/?tab=Description
+  https://leetcode.com/problems/ugly-number/?tab=Solutions
+
+module_path = os.path.abspath(os.path.join('..'))
+sys.path.append(module_path)
+from module_name import *
+
+def num2bin(i):
+  if i == 0: return [0]
+
+  s = []
+  while i:
+      if i&1==1:
+          s = [1] + s
+      else:
+          s = [0] + s
+      i = int(i/2)
+  return s
+
+def bin2num(num):
+  output = 0
+  for i,bits in enumerate(num[::-1]):
+      if bits == 1:
+          output += 2**i
+  return output
+
+ SELECT
+  COUNT(*)
+  FROM tutorial.crunchbase_companies comp
+  JOIN tutorial.crunchbase_acquisitions acq
+    ON comp.permalink = acq.permalink;
+
+
+LINKS FOR JANA'S NLP WORKSHOP
+http://nlp.stanford.edu/projects/glove/ - glove
+https://blog.keras.io/using-pre-trained-word-embeddings-in-a-keras-model.html - how to use
+http://blog.aylien.com/overview-word-embeddings-history-word2vec-cbow-glove/ - historical "intuition"
+https://www.tensorflow.org/tutorials/word2vec
+
+Behavioral Questions
+http://recruitloop.com/blog/behavioural-interview-questions/
