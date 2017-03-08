@@ -76,7 +76,7 @@ def receive_input_query_se():
 
     soup = BeautifulSoup(html_text,"lxml")
     head = soup.head
-    head.append(soup.new_tag('style', type='text/css'))
+    head.insert(1,soup.new_tag('style', type='text/css'))
     head.style.append(highlight_css)
     soup.head = head
 
