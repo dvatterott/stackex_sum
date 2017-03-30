@@ -1,17 +1,17 @@
-############## Set up StackExchange API ################
+# Set up StackExchange API
+from StackExchange_Query import *
 import stackexchange
-
 import os
+
 api_key = os.environ['SO_PASSWORD']
 
-so = stackexchange.Site(stackexchange.StackOverflow,api_key)
+so = stackexchange.Site(stackexchange.StackOverflow, api_key)
 so.be_inclusive()
 so.impose_throttling = True
 so.throttle_stop = False
 
 
 ############# build object for gathering+cleaning stackexchange data############
-from StackExchange_Query import *
 
 
 ############## create sql table ################
