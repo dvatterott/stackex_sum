@@ -56,13 +56,18 @@ def fix_links(soup, tag_type, find_str, stack_url='http://stackoverflow.com'):
 
 def add_text(soup, input_txt):
     body = soup.body
-    body.insert(0, soup.new_tag('h1'))
-    body.insert(0, soup.new_tag('br'))
-    body.insert(0, soup.new_tag('br'))
-    body.insert(0, soup.new_tag('br'))
-    new_tag = soup.new_tag('span')
-    new_tag['class'] = 'highlightme'
-    new_tag.string = input_txt
+    new_tag = soup.new_tag('h1')
+    new_tag.insert(0, soup.new_tag('br'))
+    new_tag.insert(0, soup.new_tag('br'))
+    new_tag.insert(0, soup.new_tag('br'))
+    # body.insert(0, soup.new_tag('h1'))
+    # body.insert(0, soup.new_tag('br'))
+    # body.insert(0, soup.new_tag('br'))
+    # body.insert(0, soup.new_tag('br'))
+    new_tag2 = soup.new_tag('span')
+    new_tag2['class'] = 'highlightme'
+    new_tag2.string = input_txt
+    new_tag.append(new_tag2)
     body.insert(0, new_tag)
     # body.h1.insert(0, input_txt)
     return body
