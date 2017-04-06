@@ -15,6 +15,18 @@ so = se_query.stack_exchange_query()
 # --------- get sentences predictions --------- #
 find_sent = helpful_sentences()
 
+highlight_css = """
+    .highlightme { background-color:#FFFF00; }
+    """
+warning_text = """
+        I'm only a python expert, so my helpfulness here is questionable. :/ \n
+    """
+nogood_text = """
+        I didn't find any helpful answers here. :T \n
+    """
+highlight_start = '<span class="highlightme">'
+highlight_end = '</span>'
+
 
 def fix_line_spacing(text, name):
     if len(text) == 0:
@@ -42,17 +54,15 @@ def fix_links(soup, tag_type, find_str, stack_url='http://stackoverflow.com'):
     return soup
 
 
-highlight_css = """
-    .highlightme { background-color:#FFFF00; }
-    """
-warning_text = """
-        I'm only a python expert, so my helpfulness here is questionable. :/ \n
-    """
-nogood_text = """
-        I didn't find any helpful answers here. :T \n
-    """
-highlight_start = '<span class="highlightme">'
-highlight_end = '</span>'
+def add_text(soup, input_txt):
+    body = soup.body
+    body.insert(0, soup.new_tag('h1'))
+    body.insert(0, soup.new_tag('br'))
+    body.insert(0, soup.new_tag('br'))
+    body.insert(0, soup.new_tag('br'))
+    body.insert(0, soup.new_tag('span', class="highlightme"))
+    body.h1.insert(0, input_txt)
+    return body
 
 
 @app.route('/')
@@ -97,17 +107,10 @@ def receive_input_query_se():
     soup = fix_links(soup, 'href', 'a')
 
     if 'python' not in StackObj.tags:
-        body = soup.body
-        body.insert(0, soup.new_tag('h1'))
-        body.h1.insert(0, highlight_start+'<br><br><br>'
-                       + warning_text+highlight_end)
-        soup.body = body
+        soup.body = add_text(soup, warning_text)
+
     if num_good_answers == 0:
-        body = soup.body
-        body.insert(0, soup.new_tag('h1'))
-        body.h1.insert(0, highlight_start+'<br><br><br>'
-                       + nogood_text+highlight_end)
-        soup.body = body
+        soup.body = add_text(soup, nogood_text)
 
     return render_template("output.html",
                            text=Markup(soup))
