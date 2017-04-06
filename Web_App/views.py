@@ -51,6 +51,8 @@ warning_text = """
 nogood_text = """
         I didn't find any helpful answers here. :T \n
     """
+highlight_start = '<span class="highlightme">'
+highlight_end = '</span>'
 
 
 @app.route('/')
@@ -97,12 +99,12 @@ def receive_input_query_se():
     if 'python' not in StackObj.tags:
         body = soup.body
         body.insert(0, soup.new_tag('h1'))
-        body.h1.insert(0, warning_text)
+        body.h1.insert(0, highlight_start+'\n\n\n'+warning_text+highlight_end)
         soup.body = body
     if num_good_answers == 0:
         body = soup.body
         body.insert(0, soup.new_tag('h1'))
-        body.h1.insert(0, nogood_text)
+        body.h1.insert(0, highlight_start+'\n\n\n'+nogood_text+highlight_end)
         soup.body = body
 
     return render_template("output.html",
