@@ -62,8 +62,9 @@ def add_text(soup, input_txt):
     body.insert(0, soup.new_tag('br'))
     new_tag = soup.new_tag('span')
     new_tag['class'] = 'highlightme'
+    new_tag.string = input_txt
     body.insert(0, new_tag)
-    body.h1.insert(0, input_txt)
+    # body.h1.insert(0, input_txt)
     return body
 
 
