@@ -99,12 +99,14 @@ def receive_input_query_se():
     if 'python' not in StackObj.tags:
         body = soup.body
         body.insert(0, soup.new_tag('h1'))
-        body.h1.insert(0, highlight_start+'\n\n\n'+warning_text+highlight_end)
+        body.h1.insert(0, highlight_start+'<br><br><br>'
+                       + warning_text+highlight_end)
         soup.body = body
     if num_good_answers == 0:
         body = soup.body
         body.insert(0, soup.new_tag('h1'))
-        body.h1.insert(0, highlight_start+'\n\n\n'+nogood_text+highlight_end)
+        body.h1.insert(0, highlight_start+'<br><br><br>'
+                       + nogood_text+highlight_end)
         soup.body = body
 
     return render_template("output.html",
